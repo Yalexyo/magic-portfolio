@@ -1,0 +1,16 @@
+name = "magic-portfolio"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+cwd = "."
+watch_dir = "."
+
+[build.environment_variables]
+NODE_VERSION = "20"
+NPM_FLAGS = "--legacy-peer-deps"
+
+[[routes]]
+pattern = "/*"
+zone_name = "magic-portfolio.pages.dev"
+
