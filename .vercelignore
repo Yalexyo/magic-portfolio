@@ -1,0 +1,9 @@
+# Vercel ignore file
+node_modules
+.next
+out
+.git
+.gitignore
+.DS_Store
+*.log
+
