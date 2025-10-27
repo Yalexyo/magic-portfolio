@@ -9,7 +9,10 @@ const withMDX = mdx({
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
+  output: "export", // 启用静态导出，用于 GitHub Pages 和 Cloudflare Pages
+  trailingSlash: true,
   images: {
+    unoptimized: true, // 静态导出需要禁用图片优化
     remotePatterns: [
       {
         protocol: "https",
