@@ -73,8 +73,22 @@ export default async function RootLayout({
                     root.setAttribute('data-' + key, value);
                   });
                   
-                  // Force dark theme - ignore localStorage
+                  // Force dark theme and clear any saved theme preference
                   root.setAttribute('data-theme', 'dark');
+                  localStorage.setItem('data-theme', 'dark');
+                  
+                  // Watch for theme changes and force dark
+                  const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+                        const currentTheme = root.getAttribute('data-theme');
+                        if (currentTheme !== 'dark') {
+                          root.setAttribute('data-theme', 'dark');
+                        }
+                      }
+                    });
+                  });
+                  observer.observe(root, { attributes: true });
                 } catch (e) {
                   console.error('Failed to initialize theme:', e);
                   document.documentElement.setAttribute('data-theme', 'dark');
