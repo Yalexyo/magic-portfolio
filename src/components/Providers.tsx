@@ -1,21 +1,23 @@
 "use client";
 
-import {
+import type {
   BorderStyle,
   ChartMode,
   ChartVariant,
-  DataThemeProvider,
-  IconProvider,
-  LayoutProvider,
   NeutralColor,
   ScalingSize,
   Schemes,
   SolidStyle,
   SolidType,
   SurfaceStyle,
+  TransitionStyle,
+} from "@once-ui-system/core";
+import {
+  DataThemeProvider,
+  IconProvider,
+  LayoutProvider,
   ThemeProvider,
   ToastProvider,
-  TransitionStyle,
 } from "@once-ui-system/core";
 import { style, dataStyle } from "../resources";
 import { iconLibrary } from "../resources/icons";
@@ -24,7 +26,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <LayoutProvider>
       <ThemeProvider
-        initialTheme="dark"
         brand={style.brand as Schemes}
         accent={style.accent as Schemes}
         neutral={style.neutral as NeutralColor}
