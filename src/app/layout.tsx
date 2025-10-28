@@ -45,6 +45,7 @@ export default async function RootLayout({
       )}
     >
       <head>
+        {/* @ts-ignore - dangerouslySetInnerHTML is necessary to avoid flash */}
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
