@@ -1,7 +1,7 @@
-import { getPosts } from "@/utils/utils";
 import { baseURL, routes as routesConfig } from "@/resources";
+import { getPosts } from "@/utils/utils";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
 export default async function sitemap() {
   const blogs = getPosts(["src", "app", "blog", "posts"]).map((post) => ({
@@ -9,8 +9,18 @@ export default async function sitemap() {
     lastModified: post.metadata.publishedAt,
   }));
 
-  const works = getPosts(["src", "app", "work", "projects"]).map((post) => ({
-    url: `${baseURL}/work/${post.slug}`,
+  const works = getPosts(["src", "app", "devCase", "projects"]).map((post) => ({
+    url: `${baseURL}/devCase/${post.slug}`,
+    lastModified: post.metadata.publishedAt,
+  }));
+
+  const designCases = getPosts(["src", "app", "designCases", "posts"]).map((post) => ({
+    url: `${baseURL}/designCases/${post.slug}`,
+    lastModified: post.metadata.publishedAt,
+  }));
+
+  const devCases = getPosts(["src", "app", "devCases", "posts"]).map((post) => ({
+    url: `${baseURL}/devCases/${post.slug}`,
     lastModified: post.metadata.publishedAt,
   }));
 
@@ -23,5 +33,5 @@ export default async function sitemap() {
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
-  return [...routes, ...blogs, ...works];
+  return [...routes, ...blogs, ...works, ...designCases, ...devCases];
 }

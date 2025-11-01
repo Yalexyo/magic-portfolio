@@ -18,22 +18,25 @@ const baseURL: string = "https://demo.magic-portfolio.com";
 
 const routes: RoutesConfig = {
   "/": true,
-  "/about": true,
-  "/work": true,
-  "/blog": true,
-  "/gallery": true,
+  "/designCase": true,
+  "/devCase": true,
+  "/blog": false,
+  "/teamGallery": true,
+  "/team": false,
+  "/designCases": true,
+  "/devCases": true,
 };
 
 const display: DisplayConfig = {
-  location: true,
-  time: true,
+  location: false,
+  time: false,
   themeSwitcher: false,
 };
 
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
 const protectedRoutes: ProtectedRoutesConfig = {
-  // "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
+  // "/devCase/automate-design-handovers-with-a-figma-to-code-pipeline": true,
 };
 
 // Import and set font for each variant

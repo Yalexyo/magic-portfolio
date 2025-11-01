@@ -1,4 +1,4 @@
-import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import type { DesignCase, Blog, TeamGallery, Home, Newsletter, Person, Social, DevCase } from "@/types";
 import { Line, Logo, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
@@ -46,9 +46,9 @@ const social: Social = [
 const home: Home = {
   path: "/",
   image: "/images/og/home.jpg",
-  label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
+  label: "为什么选我们",
+  title: "为什么选我们",
+  description: "专业的设计与开发团队",
   headline: <>Building bridges between design and code</>,
   featured: {
     display: true,
@@ -61,7 +61,7 @@ const home: Home = {
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/devCase/building-once-ui-a-customizable-design-system",
   },
   subline: (
     <>
@@ -77,11 +77,11 @@ const home: Home = {
   ),
 };
 
-const about: About = {
-  path: "/about",
-  label: "About",
-  title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+const designCase: DesignCase = {
+  path: "/designCase",
+  label: "设计案例",
+  title: "设计案例",
+  description: "专业设计作品展示",
   tableOfContent: {
     display: true,
     subItems: false,
@@ -119,7 +119,7 @@ const about: About = {
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: "/images/projects/project-01/cover-01.jpg",
+            src: "/images/dev-cases/project-01/cover-01.jpg",
             alt: "Once UI Project",
             width: 16,
             height: 9,
@@ -170,13 +170,13 @@ const about: About = {
         // optional: leave the array empty if you don't want to display images
         images: [
           {
-            src: "/images/projects/project-01/cover-02.jpg",
+            src: "/images/dev-cases/project-01/cover-02.jpg",
             alt: "Project image",
             width: 16,
             height: 9,
           },
           {
-            src: "/images/projects/project-01/cover-03.jpg",
+            src: "/images/dev-cases/project-01/cover-03.jpg",
             alt: "Project image",
             width: 16,
             height: 9,
@@ -205,7 +205,7 @@ const about: About = {
         // optional: leave the array empty if you don't want to display images
         images: [
           {
-            src: "/images/projects/project-01/cover-04.jpg",
+            src: "/images/dev-cases/project-01/cover-04.jpg",
             alt: "Project image",
             width: 16,
             height: 9,
@@ -225,20 +225,20 @@ const blog: Blog = {
   // All posts will be listed on the /blog route
 };
 
-const work: Work = {
-  path: "/work",
-  label: "Work",
-  title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
+const devCase: DevCase = {
+  path: "/devCase",
+  label: "开发案例",
+  title: "开发案例",
+  description: "专业开发项目展示",
   // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  // All projects will be listed on the /home and /devCase routes
 };
 
-const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
+const teamGallery: TeamGallery = {
+  path: "/teamGallery",
+  label: "项目墙",
+  title: "项目墙",
+  description: "团队作品一览",
   // Images by https://lorant.one
   // These are placeholder images, replace with your own
   images: [
@@ -285,4 +285,11 @@ const gallery: Gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+const team = {
+  path: "/team",
+  label: "Team",
+  title: `团队介绍 – ${person.name}`,
+  description: "认识我们的开发和设计团队",
+};
+
+export { person, social, newsletter, home, designCase, blog, devCase, teamGallery, team };

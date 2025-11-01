@@ -8,11 +8,11 @@ interface ProjectsProps {
 }
 
 export function Projects({ range, exclude }: ProjectsProps) {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
+  let allProjects = getPosts(["src", "app", "devCases", "posts"]);
 
   // Exclude by slug (exact match)
   if (exclude && exclude.length > 0) {
-    allProjects = allProjects.filter((post) => !exclude.includes(post.slug));
+    allProjects = allProjects.filter((post: { slug: string }) => !exclude.includes(post.slug));
   }
 
   const sortedProjects = allProjects.sort((a, b) => {
@@ -29,13 +29,16 @@ export function Projects({ range, exclude }: ProjectsProps) {
         <ProjectCard
           priority={index < 2}
           key={post.slug}
-          href={`/work/${post.slug}`}
+          href={`/devCases/${post.slug}`}
           images={post.metadata.images}
           title={post.metadata.title}
           description={post.metadata.summary}
           content={post.content}
           avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
+          publishedAt={post.metadata.publishedAt}
+          tags={post.metadata.tags}
+          demoLink={post.metadata.demoLink}
         />
       ))}
     </Column>

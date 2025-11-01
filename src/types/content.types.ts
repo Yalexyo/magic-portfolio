@@ -102,10 +102,10 @@ export interface Home extends BasePageConfig {
 }
 
 /**
- * About page configuration.
- * @description Configuration for the About page, including sections for table of contents, avatar, calendar, introduction, work experience, studies, and technical skills.
+ * DesignCase page configuration.
+ * @description Configuration for the DesignCase page, including sections for table of contents, avatar, calendar, introduction, work experience, studies, and technical skills.
  */
-export interface About extends BasePageConfig {
+export interface DesignCase extends BasePageConfig {
   /** Table of contents configuration */
   tableOfContent: {
     /** Whether to display the table of contents */
@@ -216,16 +216,16 @@ export interface About extends BasePageConfig {
 export interface Blog extends BasePageConfig {}
 
 /**
- * Work/projects page configuration.
- * @description Configuration for the Work/Projects page, including metadata and navigation label.
+ * DevCase page configuration.
+ * @description Configuration for the DevCase page, including metadata and navigation label.
  */
-export interface Work extends BasePageConfig {}
+export interface DevCase extends BasePageConfig {}
 
 /**
- * Gallery page configuration.
- * @description Configuration for the Gallery page, including metadata, navigation label, and image list.
+ * TeamGallery page configuration.
+ * @description Configuration for the TeamGallery page, including metadata, navigation label, and image list.
  */
-export interface Gallery extends BasePageConfig {
+export interface TeamGallery extends BasePageConfig {
   /** List of images in the gallery */
   images: Array<{
     /** Image source path */
@@ -236,3 +236,9 @@ export interface Gallery extends BasePageConfig {
     orientation: string;
   }>;
 }
+
+/**
+ * Team page configuration.
+ * @description Configuration for the Team page, including metadata and navigation label.
+ */
+export interface Team extends BasePageConfig {}

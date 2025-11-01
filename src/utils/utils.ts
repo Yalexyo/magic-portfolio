@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
 
 type Team = {
@@ -15,28 +15,38 @@ type Metadata = {
   summary: string;
   image?: string;
   images: string[];
-  tag?: string;
+  tag?: string | string[];
+  tags?: string[];
   team: Team[];
   link?: string;
+  demoLink?: string;
 };
 
 import { notFound } from "next/navigation";
 
 function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
-    notFound();
+    console.warn(`Directory does not exist: ${dir}`);
+    return [];
   }
 
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+  try {
+    return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+  } catch (error) {
+    console.error(`Error reading directory ${dir}:`, error);
+    return [];
+  }
 }
 
 function readMDXFile(filePath: string) {
   if (!fs.existsSync(filePath)) {
-    notFound();
+    console.error(`File does not exist: ${filePath}`);
+    throw new Error(`MDX file not found: ${filePath}`);
   }
 
-  const rawContent = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(rawContent);
+  try {
+    const rawContent = fs.readFileSync(filePath, "utf-8");
+    const { data, content } = matter(rawContent);
 
   const metadata: Metadata = {
     title: data.title || "",
@@ -45,25 +55,38 @@ function readMDXFile(filePath: string) {
     image: data.image || "",
     images: data.images || [],
     tag: data.tag || [],
+    tags: data.tags || [],
     team: data.team || [],
     link: data.link || "",
+    demoLink: data.demoLink || "",
   };
 
-  return { metadata, content };
+    return { metadata, content };
+  } catch (error) {
+    console.error(`Error reading MDX file ${filePath}:`, error);
+    throw error;
+  }
 }
 
 function getMDXData(dir: string) {
   const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-    const slug = path.basename(file, path.extname(file));
+  return mdxFiles
+    .map((file) => {
+      try {
+        const { metadata, content } = readMDXFile(path.join(dir, file));
+        const slug = path.basename(file, path.extname(file));
 
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
+        return {
+          metadata,
+          slug,
+          content,
+        };
+      } catch (error) {
+        console.error(`Error processing file ${file}:`, error);
+        return null;
+      }
+    })
+    .filter((post) => post !== null);
 }
 
 export function getPosts(customPath = ["", "", "", ""]) {

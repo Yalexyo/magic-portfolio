@@ -6,7 +6,9 @@ import {
   Column,
   Flex,
   Heading,
+  Row,
   SmartLink,
+  Tag,
   Text,
 } from "@once-ui-system/core";
 
@@ -19,6 +21,9 @@ interface ProjectCardProps {
   description: string;
   avatars: { src: string }[];
   link: string;
+  publishedAt?: string;
+  tags?: string[];
+  demoLink?: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,6 +34,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   avatars,
   link,
+  publishedAt,
+  tags,
+  demoLink,
 }) => {
   return (
     <Column fillWidth gap="m">
@@ -54,14 +62,46 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </Heading>
           </Flex>
         )}
-        {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
+        {(publishedAt || tags?.length || avatars?.length > 0 || description?.trim() || content?.trim()) && (
           <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+            {/* 日期 */}
+            {publishedAt && (
+              <Text variant="body-default-xs" onBackground="neutral-weak">
+                {publishedAt}
+              </Text>
+            )}
+
+            {/* 标签 */}
+            {tags && tags.length > 0 && (
+              <Row gap="12" wrap>
+                {tags.map((tag) => (
+                  <Tag
+                    key={tag}
+                    size="m"
+                    variant="neutral"
+                    style={{
+                      borderWidth: "1px",
+                      borderStyle: "solid",
+                      borderColor: "var(--neutral-border-medium)",
+                    }}
+                  >
+                    {tag}
+                  </Tag>
+                ))}
+              </Row>
+            )}
+
+            {/* 描述 */}
             {description?.trim() && (
               <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
                 {description}
               </Text>
             )}
+
+            {/* 团队头像 */}
+            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+
+            {/* 链接 */}
             <Flex gap="24" wrap>
               {content?.trim() && (
                 <SmartLink
@@ -69,7 +109,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
+                  <Text variant="label-strong-m">案例详情</Text>
+                </SmartLink>
+              )}
+              {demoLink && (
+                <SmartLink
+                  suffixIcon="arrowRight"
+                  style={{ margin: "0", width: "fit-content" }}
+                  href={demoLink}
+                >
+                  <Text variant="label-strong-m">查看 Demo</Text>
                 </SmartLink>
               )}
               {link && (
@@ -78,7 +127,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   style={{ margin: "0", width: "fit-content" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">View project</Text>
+                  <Text variant="label-strong-m">查看项目</Text>
                 </SmartLink>
               )}
             </Flex>

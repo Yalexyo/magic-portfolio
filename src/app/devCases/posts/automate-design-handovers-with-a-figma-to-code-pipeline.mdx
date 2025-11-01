@@ -1,0 +1,44 @@
+---
+title: "自动化设计交接：Figma 到代码的自动化流程"
+publishedAt: "2024-04-01"
+summary: "通过构建自动化流程，将 Figma 设计直接转换为干净、可用于生产的代码，显著减少设计到开发的时间。"
+images:
+  - "/images/dev-cases/automate-design-handovers-with-a-figma-to-code-pipeline/cover.jpg"
+  - "/images/dev-cases/automate-design-handovers-with-a-figma-to-code-pipeline/pipeline.jpg"
+tags:
+  - "Figma"
+  - "自动化"
+  - "CI/CD"
+team:
+  - name: "John Doe"
+    role: "软件工程师"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/company/once-ui/"
+link: "https://once-ui.com/"
+---
+
+## 项目概述
+
+在这个项目中，我专注于自动化通常繁琐的设计交接过程。目标是创建一个将 Figma 设计直接转换为干净、可用于生产的代码的自动化流程。通过集成设计 tokens、组件库和自动化工作流，该解决方案显著减少了将设计资产转换为代码所花费的时间，同时在整个产品中保持设计一致性。
+
+## 核心功能
+
+- **Figma 插件集成**: 开发了一个自定义的 Figma 插件，可以提取设计 tokens（如颜色、排版和间距值），并以与我们的代码库兼容的格式导出它们。
+- **代码生成**: 集成了一个自动化过程，使用设计 tokens 和预构建组件模板的组合将 Figma 组件转换为 React 代码。这使开发人员能够更多地专注于逻辑，而不是重复的 UI 编码。
+- **持续同步**: 建立了一个 CI/CD 流程，持续将 Figma 中的设计更改同步到代码库，确保设计更新能够立即反映，无需手动干预。
+- **可扩展的设计系统**: 利用了一个设计系统，作为设计师和开发人员的单一真实来源，即使在产品演进过程中也能轻松保持一致。
+
+## 技术栈
+
+- **Figma API**: 用于直接从 Figma 设计中提取设计 tokens 和组件数据。
+- **React 和 Next.js**: 用于使用干净、可复用的组件构建前端代码库。
+- **Styled-Components**: 用于使用设计 tokens 动态管理样式。
+- **GitHub Actions**: 用于自动化流程并将设计更改同步到仓库。
+
+## 挑战与学习
+
+最大的挑战之一是确保生成的代码干净且可维护。这涉及在 Figma 组件和 React 代码结构之间建立智能映射，以及管理响应式设计和条件渲染等边缘情况。此外，持续同步需要一个强大的错误处理系统，以防止开发过程中的冲突。
+
+## 项目成果
+
+自动化的 Figma 到代码流程简化了交接过程，将设计到开发的时间减少了 40%。设计师现在更有信心他们的设计将准确转换为代码，开发人员可以专注于更复杂的逻辑和功能开发。这个项目证明了自动化在弥合设计和开发之间差距方面的价值。

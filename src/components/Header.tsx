@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
 
-import { routes, display, person, about, blog, work, gallery } from "@/resources";
+import { routes, display, person, designCase, blog, devCase, teamGallery, team } from "@/resources";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Header.module.scss";
 
@@ -44,6 +44,16 @@ export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";
+
+  // 在案例详情页隐藏 Header
+  if (pathname.startsWith("/devCase/") && pathname !== "/devCase" && pathname !== "/devCase/") {
+    return null;
+  }
+
+  // 在设计案例详情页隐藏 Header
+  if (pathname.startsWith("/designCases/") && pathname !== "/designCases" && pathname !== "/designCases/") {
+    return null;
+  }
 
   return (
     <>
@@ -90,40 +100,40 @@ export const Header = () => {
                 <ToggleButton prefixIcon="home" href="/" selected={pathname === "/"} />
               )}
               <Line background="neutral-alpha-medium" vert maxHeight="24" />
-              {routes["/about"] && (
+              {routes["/designCase"] && (
                 <>
                   <Row s={{ hide: true }}>
                     <ToggleButton
-                      prefixIcon="person"
-                      href="/about"
-                      label={about.label}
-                      selected={pathname === "/about"}
+                      prefixIcon="figma"
+                      href="/designCase"
+                      label={designCase.label}
+                      selected={pathname === "/designCase"}
                     />
                   </Row>
                   <Row hide s={{ hide: false }}>
                     <ToggleButton
-                      prefixIcon="person"
-                      href="/about"
-                      selected={pathname === "/about"}
+                      prefixIcon="figma"
+                      href="/designCase"
+                      selected={pathname === "/designCase"}
                     />
                   </Row>
                 </>
               )}
-              {routes["/work"] && (
+              {routes["/devCase"] && (
                 <>
                   <Row s={{ hide: true }}>
                     <ToggleButton
-                      prefixIcon="grid"
-                      href="/work"
-                      label={work.label}
-                      selected={pathname.startsWith("/work")}
+                      prefixIcon="rocket"
+                      href="/devCase"
+                      label={devCase.label}
+                      selected={pathname.startsWith("/devCase")}
                     />
                   </Row>
                   <Row hide s={{ hide: false }}>
                     <ToggleButton
-                      prefixIcon="grid"
-                      href="/work"
-                      selected={pathname.startsWith("/work")}
+                      prefixIcon="rocket"
+                      href="/devCase"
+                      selected={pathname.startsWith("/devCase")}
                     />
                   </Row>
                 </>
@@ -147,21 +157,40 @@ export const Header = () => {
                   </Row>
                 </>
               )}
-              {routes["/gallery"] && (
+              {routes["/teamGallery"] && (
                 <>
                   <Row s={{ hide: true }}>
                     <ToggleButton
                       prefixIcon="gallery"
-                      href="/gallery"
-                      label={gallery.label}
-                      selected={pathname.startsWith("/gallery")}
+                      href="/teamGallery"
+                      label={teamGallery.label}
+                      selected={pathname.startsWith("/teamGallery")}
                     />
                   </Row>
                   <Row hide s={{ hide: false }}>
                     <ToggleButton
                       prefixIcon="gallery"
-                      href="/gallery"
-                      selected={pathname.startsWith("/gallery")}
+                      href="/teamGallery"
+                      selected={pathname.startsWith("/teamGallery")}
+                    />
+                  </Row>
+                </>
+              )}
+              {routes["/team"] && (
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="person"
+                      href="/team"
+                      label={team.label}
+                      selected={pathname.startsWith("/team")}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="person"
+                      href="/team"
+                      selected={pathname.startsWith("/team")}
                     />
                   </Row>
                 </>

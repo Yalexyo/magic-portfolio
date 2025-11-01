@@ -1,0 +1,28 @@
+
+> @once-ui-system/magic-portfolio@2.3.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use by process 24069
+50204, using available port 3001 instead.
+node:os:277
+  const data = getInterfaceAddresses();
+               ^
+
+NodeError [SystemError]: A system error occurred: uv_interface_addresses returned Unknown system error 1 (Unknown system error 1)
+    at Object.networkInterfaces (node:os:277:16)
+    at getNetworkHosts (/Users/sshlijy/Desktop/once-ui portfolio/node_modules/next/dist/lib/get-network-host.js:18:36)
+    at getNetworkHost (/Users/sshlijy/Desktop/once-ui portfolio/node_modules/next/dist/lib/get-network-host.js:40:19)
+    at Server.<anonymous> (/Users/sshlijy/Desktop/once-ui portfolio/node_modules/next/dist/server/lib/start-server.js:291:84) {
+  code: 'ERR_SYSTEM_ERROR',
+  info: {
+    errno: 1,
+    code: 'Unknown system error 1',
+    message: 'Unknown system error 1',
+    syscall: 'uv_interface_addresses'
+  },
+  errno: [Getter/Setter],
+  syscall: [Getter/Setter]
+}
+
+Node.js v20.19.2
+[?25h

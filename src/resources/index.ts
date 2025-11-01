@@ -4,10 +4,11 @@ export {
   social,
   newsletter,
   home,
-  about,
+  designCase,
   blog,
-  work,
-  gallery,
+  devCase,
+  teamGallery,
+  team,
 } from "./content";
 
 export {

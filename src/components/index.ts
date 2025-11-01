@@ -8,3 +8,7 @@ export { Providers } from "@/components/Providers";
 export { ScrollToHash } from "@/components/ScrollToHash";
 export { ThemeToggle } from "@/components/ThemeToggle";
 export { CustomMDX } from "@/components/mdx";
+export { UserCard } from "@/components/UserCard";
+export { TeamMemberCard } from "@/components/TeamMemberCard";
+export { TeamSection } from "@/components/TeamSection";
+export { default as HomeAnchorNav } from "@/components/HomeAnchorNav";

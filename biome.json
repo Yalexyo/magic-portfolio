@@ -16,7 +16,15 @@
   },
   "linter": {
     "enabled": true,
-    "rules": { "recommended": true }
+    "rules": { 
+      "recommended": true,
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "style": {
+        "useTemplate": "off"
+      }
+    }
   },
   "javascript": {
     "formatter": {
